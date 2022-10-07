@@ -27,3 +27,12 @@ export async function getProductById(productId) {
   console.log(RESPONSE);
   return RESPONSE;
 }
+
+export async function getProductsByQuery(query) {
+  const ENDPOINT = `https://api.mercadolibre.com/sites/MLB/search?q=$${query}`;
+  const REQUEST = await fetch(ENDPOINT);
+  const RESPONSE = await REQUEST.json();
+  // Apague o console.log caso necessário. -Lucca
+  console.log(RESPONSE.results);
+  return RESPONSE.results;
+}
