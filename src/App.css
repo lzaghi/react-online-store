@@ -2,4 +2,9 @@ div {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  border: 1px solid black;
+}
+
+img {
+  width: 100px;
 }
