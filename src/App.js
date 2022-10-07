@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import SearchInput from './components/SearchInput';
 import { getCategories, getProductsFromCategoryAndQuery } from './services/api';
 
 export default class App extends Component {
@@ -7,9 +9,11 @@ export default class App extends Component {
     getCategories();
     getProductsFromCategoryAndQuery('MLB1743', 'biz');
     return (
-      <div className="Site">
-        <p>Site</p>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={ SearchInput } />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
