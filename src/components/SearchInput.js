@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories } from '../services/api';
+import CategoryItem from './CategoryItem';
 
 export default class SearchInput extends Component {
   constructor() {
@@ -20,7 +21,7 @@ export default class SearchInput extends Component {
   }
 
   render() {
-    // const { categories } = this.state;
+    const { categories } = this.state;
     return (
       <>
         <div>
@@ -38,6 +39,18 @@ export default class SearchInput extends Component {
               carrinho
             </button>
           </Link>
+        </div>
+        <div>
+          {
+            categories.length > 0
+              ? categories.map((obj) => (
+                <CategoryItem
+                  id={ obj.id }
+                  name={ obj.name }
+                  key={ obj.id }
+                />))
+              : (<p>Carregando</p>)
+          }
         </div>
       </>
     );
