@@ -10,7 +10,7 @@ export default class Products extends Component {
         <div data-testid="product">
           <img src={ thumbnail } alt={ title } />
           <p>{ title }</p>
-          <p>{ `R$${price}` }</p>
+          <p>{ price ? `R$${price}` : 'Sem valor' }</p>
         </div>
       </Link>
     );
