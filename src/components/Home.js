@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { getCategories, getProductsByQuery } from '../services/api';
 import CategoryItem from './CategoryItem';
@@ -46,6 +47,7 @@ export default class Home extends Component {
 
   render() {
     const { categories, products, query } = this.state;
+    const { addToCart } = this.props;
     return (
       <>
         <SearchInput
@@ -78,6 +80,8 @@ export default class Home extends Component {
                   key={ obj.id }
                   products={ products }
                   id={ obj.id }
+                  addToCart={ addToCart }
+                  item={ obj }
                 />))
               : (<p>Nenhum produto foi encontrado</p>)
           }
@@ -86,3 +90,7 @@ export default class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+};

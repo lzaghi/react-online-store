@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 export default class Cart extends Component {
   render() {
+    const { cart } = this.props;
+    console.log(cart);
     return (
-      <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+      { cart.length === 0
+        ? <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
+        : ()
+      }
     );
   }
 }
