@@ -6,7 +6,7 @@ export default class RatingComponent extends Component {
 
     this.state = {
       email: '',
-      note: '',
+      // note: '',
       comment: '',
     };
   }
