@@ -37,8 +37,14 @@ export default class SearchInput extends Component {
     });
   };
 
+  updateProducts(result) {
+    this.setState({
+      products: result,
+    });
+  }
+
   render() {
-    const { categories, products } = this.state;
+    const { categories, products, query } = this.state;
     return (
       <>
         <div>
@@ -85,6 +91,9 @@ export default class SearchInput extends Component {
                   price={ obj.price }
                   thumbnail={ obj.thumbnail }
                   key={ obj.id }
+                  products={ products }
+                  query={ query }
+                  updateProducts={ this.updateProducts }
                 />))
               : (<p>Nenhum produto foi encontrado</p>)
           }
