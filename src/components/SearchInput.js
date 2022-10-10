@@ -94,6 +94,7 @@ export default class SearchInput extends Component {
                   thumbnail={ obj.thumbnail }
                   key={ obj.id }
                   products={ products }
+                  id={ obj.id }
                 />))
               : (<p>Nenhum produto foi encontrado</p>)
           }
