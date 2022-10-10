@@ -8,6 +8,8 @@ export default class CategoryItem extends Component {
     const { query, updateProducts } = this.props;
     getProductsFromCategoryAndQuery(target.id, query)
       .then((result) => updateProducts(result.results));
+
+    console.log(query);
   };
 
   render() {
@@ -28,31 +30,14 @@ export default class CategoryItem extends Component {
             onClick={ this.getProductsFromCategory }
           />
         </label>
-
-        {/* <div>
-          {
-            products.length > 0
-              && products.map((obj) => (
-                <Products
-                  title={ obj.title }
-                  price={ obj.price }
-                  thumbnail={ obj.thumbnail }
-                  key={ obj.id }
-                />))
-          }
-        </div> */}
       </div>
     );
   }
 }
 
-CategoryItem.defaultProps = {
-  query: '',
-};
-
 CategoryItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  query: PropTypes.string,
+  query: PropTypes.string.isRequired,
   updateProducts: PropTypes.func.isRequired,
 };
