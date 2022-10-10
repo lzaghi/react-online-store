@@ -36,3 +36,12 @@ export async function getProductsByQuery(query) {
   console.log(RESPONSE.results);
   return RESPONSE.results;
 }
+
+export async function getProductsByCategoryID(categoryId) {
+  const ENDPOINT = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}`;
+  const REQUEST = await fetch(ENDPOINT);
+  const RESPONSE = await REQUEST.json();
+  // Apague o console.log caso necessário. -Lucca
+  console.log(RESPONSE.results);
+  return RESPONSE.results;
+}
