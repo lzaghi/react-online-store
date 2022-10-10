@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { getCategories, getProductsByQuery } from '../services/api';
 import CategoryItem from './CategoryItem';
 import Products from './Products';
-import RatingComponent from './RatingComponent';
 
 export default class SearchInput extends Component {
   constructor() {
@@ -99,7 +98,6 @@ export default class SearchInput extends Component {
               : (<p>Nenhum produto foi encontrado</p>)
           }
         </div>
-        <RatingComponent />
       </>
     );
   }
