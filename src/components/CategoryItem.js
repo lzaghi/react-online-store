@@ -13,7 +13,7 @@ export default class CategoryItem extends Component {
         <input
           type="radio"
           id={ id }
-          name={ name }
+          name="category"
           value={ id }
         />
       </label>
