@@ -1,18 +1,28 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 
 export default class Cart extends Component {
+  getFromLocal = () => {
+    const list = JSON.parse(localStorage.getItem('cartItems'));
+    return list;
+  };
+
   render() {
     const { cart } = this.props;
     console.log(cart);
+    console.log(this.getFromLocal());
     return (
       <>
+        <Link to="/">
+          <button type="button">Voltar pra home</button>
+        </Link>
         <h1> Carrinho </h1>
-        { cart.length > 0
-          ? cart.map((obj) => (
+        { this.getFromLocal().length > 0
+          ? this.getFromLocal().map((obj, index) => (
             <CartItem
-              key={ obj.id }
+              key={ index }
               id={ obj.id }
               price={ obj.price }
               title={ obj.title }

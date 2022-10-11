@@ -22,6 +22,24 @@ export default class CartItem extends Component {
           ID:
           {id}
         </span>
+        <button
+          type="button"
+          data-testid="product-increase-quantity"
+        >
+          +
+        </button>
+        <button
+          type="button"
+          data-testid="product-decrease-quantity"
+        >
+          -
+        </button>
+        <button
+          type="button"
+          data-testid="remove-product"
+        >
+          Remove do Carrinho
+        </button>
       </>
     );
   }
