@@ -45,11 +45,20 @@ export default class Home extends Component {
     });
   };
 
+  // iniciaLocal = () => (localStorage.getItem('cartItems') === null) && localStorage.setItem('cartItems', JSON.stringify([])
+  iniciaLocal = () => {
+    if (localStorage.getItem('cartItems') === null) {
+      localStorage.setItem('cartItems', JSON.stringify([]));
+    }
+  };
+
   render() {
     const { categories, products, query } = this.state;
     const { addToCart } = this.props;
     return (
       <>
+        { this.iniciaLocal() }
+
         <SearchInput
           handleChange={ this.handleChange }
           getProducts={ this.getProducts }
