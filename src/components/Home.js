@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { getCategories, getProductsByQuery } from '../services/api';
+import CartButton from './CartButton';
 import CategoryItem from './CategoryItem';
 import Products from './Products';
 import SearchInput from './SearchInput';
-import CartButton from './CartButton';
 
 export default class Home extends Component {
   constructor() {

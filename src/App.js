@@ -26,7 +26,13 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" render={ () => <Home addToCart={ this.addToCart } /> } />
+          <Route
+            exact
+            path="/"
+            render={ () => (<Home
+              addToCart={ this.addToCart }
+            />) }
+          />
           <Route path="/cart" render={ () => <Cart cart={ cart } /> } />
           <Route path="/details/:slug" render={ (props) => <Details { ...props } /> } />
         </Switch>
