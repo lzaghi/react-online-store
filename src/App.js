@@ -14,10 +14,15 @@ export default class App extends Component {
     };
   }
 
+  addToLocal = () => {
+    const { cart } = this.state;
+    localStorage.setItem('cartItems', JSON.stringify(cart));
+  };
+
   addToCart = (item) => {
     this.setState((prevState) => ({
       cart: [...prevState.cart, item],
-    }));
+    }), this.addToLocal);
   };
 
   render() {

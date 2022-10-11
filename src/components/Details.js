@@ -29,6 +29,9 @@ export default class Details extends Component {
         <Link to="/cart">
           <button type="button" data-testid="shopping-cart-button">Carrinho</button>
         </Link>
+        <Link to="/">
+          <button type="button">Voltar pra home</button>
+        </Link>
         {Object.keys(product).length > 0
           ? (
             <>
