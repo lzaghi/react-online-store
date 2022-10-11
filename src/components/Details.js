@@ -21,14 +21,15 @@ export default class Details extends Component {
   }
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { product } = this.state;
+    const { addToCart } = this.props;
     return (
       <div>
         <Link to="/cart">
           <button type="button" data-testid="shopping-cart-button">Carrinho</button>
         </Link>
-        { Object.keys(product).length > 0
+        {Object.keys(product).length > 0
           ? (
             <>
               <img
@@ -37,13 +38,20 @@ export default class Details extends Component {
                 alt={ product.title }
               />
               <p data-testid="product-detail-name">{ product.title }</p>
-              <p data-testid="product-detail-price">{ `R$ ${product.price}` }</p>
-              <p>{ `Itens vendidos: ${product.sold_quantity}` }</p>
-              <p>{ `Quantidade disponível: ${product.available_quantity}` }</p>
-              { product.pictures.length > 1
+              <p data-testid="product-detail-price">{`R$ ${product.price}`}</p>
+              <p>{`Itens vendidos: ${product.sold_quantity}`}</p>
+              <p>{`Quantidade disponível: ${product.available_quantity}`}</p>
+              {product.pictures.length > 1
                 && product.pictures.map((pic) => (
                   <img src={ pic.url } alt={ pic.id } key={ pic.id } />
                 ))}
+              <button
+                data-testid="product-detail-add-to-cart"
+                type="button"
+                onClick={ () => addToCart(product) }
+              >
+                Adicionar ao carrinho
+              </button>
             </>
           )
           : <p>Carregando</p>}
@@ -56,4 +64,5 @@ Details.propTypes = {
   match: PropTypes.shape({
     url: PropTypes.string,
   }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
