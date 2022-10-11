@@ -18,7 +18,7 @@ export default class Cart extends Component {
               title={ obj.title }
               thumbnail={ obj.thumbnail }
             />))
-          : <p> Não há nenhum item no seu carrinho. </p>}
+          : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
       </>
     );
   }
