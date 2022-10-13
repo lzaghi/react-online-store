@@ -12,6 +12,8 @@ export default class Products extends Component {
             <img src={ thumbnail } alt={ title } />
             <p>{ title }</p>
             <p>{ price ? `R$${price}` : 'Sem valor' }</p>
+            {item.shipping.free_shipping
+                && <p data-testid="free-shipping">Frete Grátis!</p>}
           </div>
         </Link>
         <button

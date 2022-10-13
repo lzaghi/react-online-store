@@ -41,6 +41,8 @@ export default class Details extends Component {
                 alt={ product.title }
               />
               <p data-testid="product-detail-name">{ product.title }</p>
+              {product.shipping.free_shipping
+                && <p data-testid="free-shipping">Frete Grátis!</p>}
               <p data-testid="product-detail-price">{`R$ ${product.price}`}</p>
               <p>{`Itens vendidos: ${product.sold_quantity}`}</p>
               <p>{`Quantidade disponível: ${product.available_quantity}`}</p>
