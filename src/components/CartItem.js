@@ -45,6 +45,7 @@ export default class CartItem extends Component {
           type="button"
           data-testid="product-decrease-quantity"
           onClick={ () => removeItemFromCart(item) }
+          disabled={ counter === 1 }
         >
           -
         </button>
