@@ -12,7 +12,11 @@ export default class CartItem extends Component {
   // };
 
   render() {
-    const { id, price, title, thumbnail, counter, removeItem } = this.props;
+    const { id,
+      price,
+      title,
+      thumbnail,
+      counter, removeAllFromCart, addToCart, item, removeItemFromCart } = this.props;
     return (
       <>
         <img src={ thumbnail } alt={ title } />
@@ -25,7 +29,7 @@ export default class CartItem extends Component {
         <span
           data-testid="shopping-cart-product-quantity"
         >
-          {`Quantidade: ${counter}`}
+          {counter}
         </span>
         <span>
           {`ID: ${id}`}
@@ -33,19 +37,21 @@ export default class CartItem extends Component {
         <button
           type="button"
           data-testid="product-increase-quantity"
+          onClick={ () => addToCart(item) }
         >
           +
         </button>
         <button
           type="button"
           data-testid="product-decrease-quantity"
+          onClick={ () => removeItemFromCart(item) }
         >
           -
         </button>
         <button
           type="button"
           data-testid="remove-product"
-          onClick={ () => removeItem(id) }
+          onClick={ () => removeAllFromCart(id) }
         >
           Remove do Carrinho
         </button>
@@ -60,5 +66,8 @@ CartItem.propTypes = {
   title: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   counter: PropTypes.number.isRequired,
-  removeItem: PropTypes.func.isRequired,
+  removeAllFromCart: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  item: PropTypes.shape.isRequired,
+  removeItemFromCart: PropTypes.func.isRequired,
 };
