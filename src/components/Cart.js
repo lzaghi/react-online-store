@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
@@ -10,8 +10,8 @@ export default class Cart extends Component {
   };
 
   countItem = (id) => {
-    const list = this.getFromLocal();
-    const total = list.reduce((acc, curr) => {
+    const { cart } = this.props;
+    const total = cart.reduce((acc, curr) => {
       if (curr.id === id) acc += 1;
       return acc;
     }, 0);
@@ -25,18 +25,31 @@ export default class Cart extends Component {
     localStorage.setItem('cartItems', JSON.stringify(newList));
   };
 
+  filterCart = () => {
+    const { cart } = this.props;
+    const newCart = [];
+    cart.forEach((product) => {
+      if (!newCart.includes(product)) {
+        newCart.push(product);
+      }
+    });
+    console.log(cart);
+    console.log(newCart);
+    return newCart;
+  };
+
   render() {
-    console.log(this.getFromLocal());
-    const list = this.getFromLocal();
-    // const { cart } = this.props;
+    // const list = this.getFromLocal();
+    const { cart } = this.props;
+    console.log(cart);
     return (
       <>
         <Link to="/">
           <button type="button">Voltar pra home</button>
         </Link>
         <h1> Carrinho </h1>
-        { list.length > 0
-          ? list
+        { cart.length > 0
+          ? this.filterCart()
             .map((obj, index) => (
               <CartItem
                 key={ index }
@@ -54,6 +67,6 @@ export default class Cart extends Component {
   }
 }
 
-// Cart.propTypes = {
-//   cart: PropTypes.arrayOf(PropTypes.shape).isRequired,
-// };
+Cart.propTypes = {
+  cart: PropTypes.arrayOf(PropTypes.shape).isRequired,
+};

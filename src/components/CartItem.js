@@ -25,12 +25,10 @@ export default class CartItem extends Component {
         <span
           data-testid="shopping-cart-product-quantity"
         >
-          Quantidade:
-          { counter }
+          {`Quantidade: ${counter}`}
         </span>
         <span>
-          ID:
-          {id}
+          {`ID: ${id}`}
         </span>
         <button
           type="button"
