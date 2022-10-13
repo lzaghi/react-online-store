@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 
 export default class Cart extends Component {
-  getFromLocal = () => {
-    const list = JSON.parse(localStorage.getItem('cartItems'));
-    return list;
-  };
+  // getFromLocal = () => {
+  //   const list = JSON.parse(localStorage.getItem('cartItems'));
+  //   return list;
+  // };
 
   countItem = (id) => {
     const { cart } = this.props;
@@ -18,12 +18,12 @@ export default class Cart extends Component {
     return total;
   };
 
-  removeItem = (id) => {
-    const list = this.getFromLocal();
-    const newList = list.filter((item) => item.id !== id);
-    console.log(newList);
-    localStorage.setItem('cartItems', JSON.stringify(newList));
-  };
+  // removeItem = (id) => {
+  //   const list = this.getFromLocal();
+  //   const newList = list.filter((item) => item.id !== id);
+  //   console.log(newList);
+  //   localStorage.setItem('cartItems', JSON.stringify(newList));
+  // };
 
   filterCart = () => {
     const { cart } = this.props;
@@ -40,7 +40,7 @@ export default class Cart extends Component {
 
   render() {
     // const list = this.getFromLocal();
-    const { cart } = this.props;
+    const { cart, removeAllFromCart, addToCart, removeItemFromCart } = this.props;
     console.log(cart);
     return (
       <>
@@ -59,7 +59,11 @@ export default class Cart extends Component {
                 thumbnail={ obj.thumbnail }
                 counter={ this.countItem(obj.id) }
                 // getFromLocal={ this.getFromLocal }
-                removeItem={ this.removeItem }
+                // removeItem={ this.removeItem }
+                removeAllFromCart={ removeAllFromCart }
+                addToCart={ addToCart }
+                item={ obj }
+                removeItemFromCart={ removeItemFromCart }
               />))
           : <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>}
       </>
@@ -69,4 +73,7 @@ export default class Cart extends Component {
 
 Cart.propTypes = {
   cart: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  removeAllFromCart: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  removeItemFromCart: PropTypes.func.isRequired,
 };

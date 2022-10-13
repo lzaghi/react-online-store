@@ -25,6 +25,24 @@ export default class App extends Component {
     }), this.addToLocal);
   };
 
+  removeAllFromCart = (id) => {
+    const { cart } = this.state;
+    const newCart = cart.filter((products) => products.id !== id);
+    this.setState(({
+      cart: newCart,
+    }), this.addToLocal);
+  };
+
+  removeItemFromCart = (item) => {
+    const { cart } = this.state;
+    const indexExists = -1;
+    const index = cart.lastIndexOf(item);
+    if (index > indexExists) cart.splice(index, 1);
+    this.setState(({
+      cart,
+    }), this.addToLocal);
+  };
+
   render() {
     const { cart } = this.state;
     // console.log(cart);
@@ -38,7 +56,15 @@ export default class App extends Component {
               addToCart={ this.addToCart }
             />) }
           />
-          <Route path="/cart" render={ () => <Cart cart={ cart } /> } />
+          <Route
+            path="/cart"
+            render={ () => (<Cart
+              cart={ cart }
+              addToCart={ this.addToCart }
+              removeAllFromCart={ this.removeAllFromCart }
+              removeItemFromCart={ this.removeItemFromCart }
+            />) }
+          />
           <Route
             path="/details/:slug"
             render={ (props) => (<Details
