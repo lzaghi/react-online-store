@@ -4,10 +4,23 @@ import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 
 export default class Cart extends Component {
-  // getFromLocal = () => {
-  //   const list = JSON.parse(localStorage.getItem('cartItems'));
-  //   return list;
-  // };
+  constructor() {
+    super();
+
+    this.state = {
+      list: [],
+    };
+  }
+
+  componentDidMount() {
+    const list = this.getFromLocal();
+    this.setState({ list });
+  }
+
+  getFromLocal = () => {
+    const list = JSON.parse(localStorage.getItem('cartItems'));
+    return list;
+  };
 
   countItem = (id) => {
     const { cart } = this.props;
@@ -26,20 +39,19 @@ export default class Cart extends Component {
   // };
 
   filterCart = () => {
-    const { cart } = this.props;
-    const newCart = [];
-    cart.forEach((product) => {
-      if (!newCart.includes(product)) {
-        newCart.push(product);
-      }
-    });
-    console.log(cart);
-    console.log(newCart);
-    return newCart;
+    // const { cart } = this.props;
+    const { list } = this.state;
+
+    const ids = list.map((product) => product.id);
+    const newList = list.filter(({ id }, index) => !ids.includes(id, index + 1));
+
+    console.log(list, newList);
+    // console.log(cart);
+    return newList;
   };
 
   render() {
-    // const list = this.getFromLocal();
+    const { list } = this.state;
     const { cart, removeAllFromCart, addToCart, removeItemFromCart } = this.props;
     console.log(cart);
     return (
@@ -48,7 +60,7 @@ export default class Cart extends Component {
           <button type="button">Voltar pra home</button>
         </Link>
         <h1> Carrinho </h1>
-        { cart.length > 0
+        { list.length > 0
           ? this.filterCart()
             .map((obj, index) => (
               <CartItem

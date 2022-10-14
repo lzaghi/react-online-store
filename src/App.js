@@ -10,7 +10,7 @@ export default class App extends Component {
     super();
 
     this.state = {
-      cart: [],
+      cart: JSON.parse(localStorage.getItem('cartItems')) || [],
     };
   }
 
@@ -25,18 +25,21 @@ export default class App extends Component {
     }), this.addToLocal);
   };
 
-  removeAllFromCart = (id) => {
+  removeAllFromCart = (id, event) => {
     const { cart } = this.state;
     const newCart = cart.filter((products) => products.id !== id);
     this.setState(({
       cart: newCart,
     }), this.addToLocal);
+
+    event.target.parentNode.remove();
   };
 
   removeItemFromCart = (item) => {
     const { cart } = this.state;
+    const ids = cart.map((product) => product.id);
     const indexExists = -1;
-    const index = cart.lastIndexOf(item);
+    const index = ids.indexOf(item.id);
     if (index > indexExists) cart.splice(index, 1);
     this.setState(({
       cart,
