@@ -18,45 +18,47 @@ export default class CartItem extends Component {
       thumbnail,
       counter, removeAllFromCart, addToCart, item, removeItemFromCart } = this.props;
     return (
-      <>
-        <img src={ thumbnail } alt={ title } />
-        <span data-testid="shopping-cart-product-name">
-          {title}
-        </span>
-        <span>
-          {price}
-        </span>
-        <span
-          data-testid="shopping-cart-product-quantity"
-        >
-          {counter}
-        </span>
-        <span>
-          {`ID: ${id}`}
-        </span>
-        <button
-          type="button"
-          data-testid="product-increase-quantity"
-          onClick={ () => addToCart(item) }
-        >
-          +
-        </button>
-        <button
-          type="button"
-          data-testid="product-decrease-quantity"
-          onClick={ () => removeItemFromCart(item) }
-          disabled={ counter === 1 }
-        >
-          -
-        </button>
-        <button
-          type="button"
-          data-testid="remove-product"
-          onClick={ () => removeAllFromCart(id) }
-        >
-          Remove do Carrinho
-        </button>
-      </>
+      <div>
+        <div>
+          <img src={ thumbnail } alt={ title } />
+          <span data-testid="shopping-cart-product-name">
+            {title}
+          </span>
+          <span>
+            {price}
+          </span>
+          <span
+            data-testid="shopping-cart-product-quantity"
+          >
+            {counter}
+          </span>
+          <span>
+            {`ID: ${id}`}
+          </span>
+          <button
+            type="button"
+            data-testid="product-increase-quantity"
+            onClick={ () => addToCart(item) }
+          >
+            +
+          </button>
+          <button
+            type="button"
+            data-testid="product-decrease-quantity"
+            onClick={ () => removeItemFromCart(item) }
+            disabled={ counter === 1 }
+          >
+            -
+          </button>
+          <button
+            type="button"
+            data-testid="remove-product"
+            onClick={ (event) => removeAllFromCart(id, event) }
+          >
+            Remove do Carrinho
+          </button>
+        </div>
+      </div>
     );
   }
 }
@@ -69,6 +71,6 @@ CartItem.propTypes = {
   counter: PropTypes.number.isRequired,
   removeAllFromCart: PropTypes.func.isRequired,
   addToCart: PropTypes.func.isRequired,
-  item: PropTypes.shape.isRequired,
+  item: PropTypes.shape().isRequired,
   removeItemFromCart: PropTypes.func.isRequired,
 };
