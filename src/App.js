@@ -57,6 +57,7 @@ export default class App extends Component {
             path="/"
             render={ () => (<Home
               addToCart={ this.addToCart }
+              cart={ cart }
             />) }
           />
           <Route
@@ -73,6 +74,7 @@ export default class App extends Component {
             render={ (props) => (<Details
               { ...props }
               addToCart={ this.addToCart }
+              cart={ cart }
             />) }
           />
         </Switch>
