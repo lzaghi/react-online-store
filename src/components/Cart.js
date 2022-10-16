@@ -32,22 +32,13 @@ export default class Cart extends Component {
     return total;
   };
 
-  // removeItem = (id) => {
-  //   const list = this.getFromLocal();
-  //   const newList = list.filter((item) => item.id !== id);
-  //   console.log(newList);
-  //   localStorage.setItem('cartItems', JSON.stringify(newList));
-  // };
-
   filterCart = () => {
-    // const { cart } = this.props;
     const { list } = this.state;
 
     const ids = list.map((product) => product.id);
     const newList = list.filter(({ id }, index) => !ids.includes(id, index + 1));
 
     console.log(list, newList);
-    // console.log(cart);
     return newList;
   };
 
@@ -71,8 +62,6 @@ export default class Cart extends Component {
                 title={ item.title }
                 thumbnail={ item.thumbnail }
                 counter={ this.countItem(item.id) }
-                // getFromLocal={ this.getFromLocal }
-                // removeItem={ this.removeItem }
                 removeAllFromCart={ removeAllFromCart }
                 addToCart={ addToCart }
                 item={ item }
